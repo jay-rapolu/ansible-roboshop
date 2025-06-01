@@ -69,11 +69,13 @@
     ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
     register: status
 
-  - name: printing status
-    # ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site < /app/db/master-data.js
-    # when: status < 0
+  - name: loading data if collection does not exist
+    ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site < /app/db/master-data.js
+    when: "{{ status.stdout | int < 0 }}" 
+    
+  - name: debug stdout  
     ansible.builtin.debug:
-      msg: "{{ status.stdout }}"
+      msg: "{{ status.stdout | int < 0 }}"
       
 
   
