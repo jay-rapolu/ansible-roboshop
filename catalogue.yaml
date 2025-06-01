@@ -71,7 +71,7 @@
 
   - name: loading data if collection does not exist
     ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site < /app/db/master-data.js
-    when: "{{ status.stdout | int < 0 }}" 
+    when: "{{ status.stdout | int }} < 0" 
     
   - name: debug stdout  
     ansible.builtin.debug:
