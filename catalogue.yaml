@@ -71,7 +71,6 @@
   - name: create schema and load data to mongodb
     community.mongodb.mongodb_shell:
       file: "/app/db/master-data.js"
-      remote_src: yes
       idempotent: yes
 
   
