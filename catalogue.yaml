@@ -73,7 +73,7 @@
     # ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site < /app/db/master-data.js
     # when: status < 0
     ansible.builtin.debug:
-      msg: "{{ status }}"
+      msg: "{{ status.stdout }}"
       
 
   
