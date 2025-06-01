@@ -2,9 +2,15 @@
   hosts: redis
   become: yes
   tasks:
-  - name: Install redis server
+  - name: disable default redis module
+    ansible.builtin.command: dnf module disable redis -y
+
+  - name: enable redis module 7
+    ansible.builtin.command: dnf module enable redis:7 -y
+
+  - name: Install redis 
     ansible.builtin.dnf:
-      name: redis == 7
+      name: redis
       state: present
 
   - name: allow remote connections to server
