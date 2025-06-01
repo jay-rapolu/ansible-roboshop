@@ -65,12 +65,13 @@
       name: mongodb-mongosh
       state: present
 
-  # - name: creating schema and loading data into mongodb
-  #   ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site < /app/db/master-data.js
+  - name: checking schema existence
+    ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")
+    register: status
 
-  - name: create schema and load data to mongodb
-    community.mongodb.mongodb_shell:
-      file: "/app/db/master-data.js"
-      idempotent: yes
+  - name: loading schema if does not exist
+    ansible.builtin.shell: mongosh --host mongodb.jayachandrarapolu.site < /app/db/master-data.js
+    when: status < 0
+      
 
   
