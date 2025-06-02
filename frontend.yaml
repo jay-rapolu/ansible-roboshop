@@ -1,6 +1,9 @@
 - name: configuring frontend 
   hosts: frontend
   become: yes
+  vars:
+    ansible_user: ec2-user
+    ansible_password: DevOps321
   tasks:
   - name: disable default nginx
     ansible.builtin.command: dnf module disable nginx -y
