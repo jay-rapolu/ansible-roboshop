@@ -1,6 +1,9 @@
 - name: Mongodb provisioning
   hosts: mongodb
   become: yes
+  vars:
+    ansible_user: ec2-user
+    ansible_password: DevOps321
   tasks:
   - name: copy mongo repo to yum repos
     ansible.builtin.copy:
