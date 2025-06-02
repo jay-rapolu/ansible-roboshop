@@ -30,6 +30,7 @@
     ansible.builtin.unarchive:
       src: /tmp/payment.zip
       dest: /app/
+      remote_src: yes
 
   - name: install python dependencies
     ansible.builtin.pip:
