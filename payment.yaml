@@ -1,0 +1,36 @@
+- name: setting up payment component
+  hosts: payment
+  become: yes
+  tasks:
+  - name: install python packages
+    ansible.builtin.dnf:
+      name: "{{ item }}"
+      state: present
+    loop:
+    - python3
+    - gcc
+    - python3-devel
+
+  - name: create roboshop system user 
+    ansible.builtin.user:
+      name: roboshop
+      shell: /sbin/nologin
+      home: /app
+      system: true
+
+  - name: download source code
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip
+      dest: /tmp/payment.zip
+
+  - name: deploy package
+    ansible.builtin.unarchive:
+      src: /tmp/payment.zip
+      dest: /app/
+
+  - name: install python dependencies
+    ansible.builtin.pip:
+      name: /app/requirements.txt
+      executable: pip3.9
+
+  
