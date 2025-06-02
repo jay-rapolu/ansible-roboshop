@@ -34,7 +34,7 @@
       chdir: /app
 
   - name: deploying the artifact
-    ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+    ansible.builtin.command: mv /app/target/shipping-1.0.jar shipping.jar
 
   - name: create service file
     ansible.builtin.copy:
