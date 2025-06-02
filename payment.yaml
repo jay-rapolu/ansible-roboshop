@@ -34,7 +34,7 @@
 
   - name: install python dependencies
     ansible.builtin.pip:
-      name: /app/requirements.txt
+      requirements: /app/requirements.txt
       executable: pip3.9
 
   - name: create service file
