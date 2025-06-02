@@ -30,4 +30,4 @@
   - name: restart Mongodb
     ansible.builtin.service:
       name: mongod
-      state: reloaded
+      state: restarted
