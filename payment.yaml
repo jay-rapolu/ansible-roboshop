@@ -33,4 +33,19 @@
       name: /app/requirements.txt
       executable: pip3.9
 
+  - name: create service file
+    ansible.builtin.copy:
+      src: payment.service
+      dest: /etc/systemd/system/payment.service
+
+  - name: reload systemctl daemon
+    ansible.builtin.systemd_service:
+      daemon-reload: true
+
+  - name: start and enable payment
+    ansible.builtin.service:
+      name: payment
+      state: present
+      enabled: yes
+
   
