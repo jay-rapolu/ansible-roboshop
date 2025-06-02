@@ -56,6 +56,11 @@
       name: mysql
       state: present
 
+  - name: install python dependencies
+    ansible.builtin.pip:
+      name: PyMySQL
+      executable: pip3.9
+
   - name: importing data to mysql
     community.mysql.mysql_db:
       login_host: mysql.jayachandrarapolu.site
