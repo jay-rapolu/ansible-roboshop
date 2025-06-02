@@ -22,6 +22,11 @@
       url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
       dest: /tmp/shipping.zip
 
+  - name: deploy source code
+    ansible.builtin.unarchive:
+      src: /tmp/shipping.zip
+      dest: /app
+
   - name: build the package
     ansible.builtin.command: mvn clean package
     args:
