@@ -1,5 +1,5 @@
 - name: mongodb setup
-  hosts: mysql
+  hosts: mongodb
   become: yes
   tasks:
   - name: create mongodb repo
