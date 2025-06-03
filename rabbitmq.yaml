@@ -25,9 +25,4 @@
       state: present
 
   - name: setting permissions to rabbitmq roboshop user
-    community.rabbitmq.rabbitmq_permissions:
-      user: roboshop
-      vhost: /
-      configure_priv: ".*"
-      write_priv: ".*"
-      read_priv: ".*"
+    ansible.builtin.command: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
