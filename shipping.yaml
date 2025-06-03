@@ -36,7 +36,7 @@
       chdir: /app
 
   - name: deploying the package
-    ansible.builtin.command: mv /app/target/shipping-1.0.jar /app/shipping.jar && rm -f /app/target/shipping-1.0.jar
+    ansible.builtin.command: mv /app/target/shipping-1.0.jar /app/shipping.jar
 
   - name: create service file for shipping
     ansible.builtin.copy:
