@@ -47,6 +47,12 @@
     ansible.builtin.systemd:
       daemon_reload: yes
 
+  - name: start and enable catalogue
+    ansible.builtin.service:
+      name: catalogue
+      enabled: yes
+      state: started
+
   - name: create mongo repo
     ansible.builtin.copy:
       src: mongo.repo
@@ -59,3 +65,8 @@
 
   - name: load data to mongodb
     ansible.builtin.shell: mongosh --host mongodb-ansible.jayachandrarapolu.site < /app/db/master-data.js
+
+  - name: restart catalogue service
+    ansible.builtin.service:
+      name: catalogue
+      state: restarted
